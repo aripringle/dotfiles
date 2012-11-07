@@ -11,6 +11,10 @@ alias screen="_ssh_auth_init ; screen -c $MY_INCLUDE_DIR/screenrc"
 			ssh-add
 			trap "kill $SSH_AGENT_PID" 0
 		fi
-		ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh/ssh-auth-sock"
+
+        if [ "$SSH_AUTH_SOCK" != "$HOME/.ssh/ssh-auth-sock" ]
+        then
+		    ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh/ssh-auth-sock"
+        fi
 	}
 
